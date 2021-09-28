@@ -8,6 +8,8 @@ resource "aws_instance" "web_host" {
   subnet_id = "${aws_subnet.web_subnet.id}"
   user_data = <<EOF
 #! /bin/bash
+  
+  
 sudo apt-get update
 sudo apt-get install -y apache2
 sudo systemctl start apache2
@@ -29,6 +31,8 @@ EOF
     git_repo             = "terragoat"
     yor_trace            = "347af3cd-4f70-4632-aca3-4d5e30ffc0b6"
   })
+  monitoring = true
+  ebs_optimized = true
 }
 
 resource "aws_ebs_volume" "web_host_storage" {
